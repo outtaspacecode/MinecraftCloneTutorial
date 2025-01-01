@@ -11,4 +11,8 @@
       <PackageReference Include="OpenTK" Version="4.9.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="obj\Debug\net8.0\.gitignore" />
+    </ItemGroup>
+
 </Project>
