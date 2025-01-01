@@ -114,8 +114,8 @@ namespace MinecraftCloneTutorial {
         private int _textureID;
         private int _textureVBO;
         
-        // Transformation variables
-        private float _yRot = 0.0f;
+        // Camera
+        private Camera _camera;
         
         // Width and Height of the game window
         private int _width, _height;
@@ -248,7 +248,7 @@ namespace MinecraftCloneTutorial {
             // Load texture image
             // If we don't do this, our textures will be flipped vertically (the 1 represents true)
             StbImage.stbi_set_flip_vertically_on_load(1);
-            ImageResult dirtTexture = ImageResult.FromStream(File.OpenRead("../../../Textures/dirt.png"), ColorComponents.RedGreenBlueAlpha);
+            ImageResult dirtTexture = ImageResult.FromStream(File.OpenRead("../../../Textures/stone.png"), ColorComponents.RedGreenBlueAlpha);
             
             // This just loads the texture for GL
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, dirtTexture.Width, dirtTexture.Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, dirtTexture.Data);
@@ -258,7 +258,10 @@ namespace MinecraftCloneTutorial {
 
             // Enable depth testing
             GL.Enable(EnableCap.DepthTest);
-            
+
+            _camera = new Camera(_width, _height, Vector3.Zero);
+            CursorState = CursorState.Grabbed;
+
         }
 
         protected override void OnUnload() {
@@ -288,17 +291,10 @@ namespace MinecraftCloneTutorial {
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, _ibo);
             
             // Transformation matrices
-            Matrix4 model = Matrix4.Identity;
-            Matrix4 view = Matrix4.Identity;
-            Matrix4 projection =
-                Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(60.0f), _width / _height, 0.1f,
-                    100.0f);
-
-            _yRot += 0.001f;
-            if (_yRot >= 2.0 * (float)Math.PI) {
-                _yRot -= 2.0f * (float)Math.PI;
-            }
-            model = Matrix4.CreateRotationY(_yRot);
+            Matrix4 model = Matrix4.CreateScale(1.0f);
+            Matrix4 view = _camera.GetViewMatrix();
+            Matrix4 projection = _camera.GetProjectionMatrix();
+            
             model *= Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
             
             var modelLocation = GL.GetUniformLocation(_shaderProgram, "model");
@@ -319,7 +315,11 @@ namespace MinecraftCloneTutorial {
 
         protected override void OnUpdateFrame(FrameEventArgs args) {
             base.OnUpdateFrame(args);
+
+            MouseState mouse = MouseState;
+            KeyboardState input = KeyboardState;
             
+            _camera.Update(input, mouse, args);
             // Close the program if the escape key is pressed
             if(KeyboardState.IsKeyDown(Keys.Escape)) { Close(); }
         }
