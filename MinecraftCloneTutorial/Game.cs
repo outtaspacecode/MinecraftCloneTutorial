@@ -1,35 +1,109 @@
+using System.Globalization;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
+using OpenTK.Windowing.GraphicsLibraryFramework;
 // using OpenTK.Windowing.GraphicsLibraryFramework;
 using StbImageSharp;
 
 namespace MinecraftCloneTutorial {
     internal class Game : GameWindow {
         
-        // Vertices for a triangle
-        private readonly float[] _vertices = [
-            -0.5f,  0.5f, 0.0f,     // Top-left vertex
-             0.5f,  0.5f, 0.0f,     // Top-right vertex
-             0.5f, -0.5f, 0.0f,     // Bottom-right vertex
-            -0.5f, -0.5f, 0.0f      // Bottom-left vertex
+        // Vertices for a cube
+        private readonly List<Vector3> _vertices = [
+            // Front face
+            new Vector3(-0.5f,  0.5f, 0.5f),    // Top-left vertex
+            new Vector3( 0.5f,  0.5f, 0.5f),    // Top-right vertex
+            new Vector3( 0.5f, -0.5f, 0.5f),    // Bottom-right vertex
+            new Vector3(-0.5f, -0.5f, 0.5f),    // Bottom-left vertex
+            
+            // Right face
+            new Vector3( 0.5f,  0.5f,  0.5f),   // Top-left vertex
+            new Vector3( 0.5f,  0.5f, -0.5f),   // Top-right vertex
+            new Vector3( 0.5f, -0.5f, -0.5f),   // Bottom-right vertex
+            new Vector3( 0.5f, -0.5f,  0.5f),   // Bottom-left vertex
+            
+            // Back face
+            new Vector3( 0.5f,  0.5f, -0.5f),   // Top-left vertex
+            new Vector3(-0.5f,  0.5f, -0.5f),   // Top-right vertex
+            new Vector3(-0.5f, -0.5f, -0.5f),   // Bottom-right vertex
+            new Vector3( 0.5f, -0.5f, -0.5f),   // Bottom-left vertex
+            
+            // Left face
+            new Vector3(-0.5f,  0.5f, -0.5f),   // Top-left vertex
+            new Vector3(-0.5f,  0.5f,  0.5f),   // Top-right vertex
+            new Vector3(-0.5f, -0.5f,  0.5f),   // Bottom-right vertex
+            new Vector3(-0.5f, -0.5f, -0.5f),   // Bottom-left vertex
+            
+            // Top face
+            new Vector3(-0.5f,  0.5f, -0.5f),   // Top-left vertex
+            new Vector3( 0.5f,  0.5f, -0.5f),   // Top-right vertex
+            new Vector3( 0.5f,  0.5f,  0.5f),   // Bottom-right vertex
+            new Vector3(-0.5f,  0.5f,  0.5f),   // Bottom-left vertex
+            
+            // Bottom face
+            new Vector3(-0.5f, -0.5f,  0.5f),   // Top-left vertex
+            new Vector3( 0.5f, -0.5f,  0.5f),   // Top-right vertex
+            new Vector3( 0.5f, -0.5f, -0.5f),   // Bottom-right vertex
+            new Vector3(-0.5f, -0.5f, -0.5f)    // Bottom-left vertex
+            
         ];
 
         // Texture coordinates range from 0.0 to 1.0. Since we flipped the texture vertically, the
         // bottom left corner is (0,0)
-        private readonly float[] _texCoords = [
-            0.0f, 1.0f,
-            1.0f, 1.0f,
-            1.0f, 0.0f,
-            0.0f, 0.0f
+        // These are the same for every face
+        private readonly List<Vector2> _texCoords = [
+            new Vector2(0.0f, 1.0f),
+            new Vector2(1.0f, 1.0f),
+            new Vector2(1.0f, 0.0f),
+            new Vector2(0.0f, 0.0f),
+            
+            new Vector2(0.0f, 1.0f),
+            new Vector2(1.0f, 1.0f),
+            new Vector2(1.0f, 0.0f),
+            new Vector2(0.0f, 0.0f),
+            
+            new Vector2(0.0f, 1.0f),
+            new Vector2(1.0f, 1.0f),
+            new Vector2(1.0f, 0.0f),
+            new Vector2(0.0f, 0.0f),
+            
+            new Vector2(0.0f, 1.0f),
+            new Vector2(1.0f, 1.0f),
+            new Vector2(1.0f, 0.0f),
+            new Vector2(0.0f, 0.0f),
+            
+            new Vector2(0.0f, 1.0f),
+            new Vector2(1.0f, 1.0f),
+            new Vector2(1.0f, 0.0f),
+            new Vector2(0.0f, 0.0f),
+            
+            new Vector2(0.0f, 1.0f),
+            new Vector2(1.0f, 1.0f),
+            new Vector2(1.0f, 0.0f),
+            new Vector2(0.0f, 0.0f)
         ];
 
+        // The indices of each triangle, with two triangles per face
         private readonly uint[] _indices = [
-            // Top triangle
             0, 1, 2,
-            // Bottom triangle
-            2, 3, 0
+            2, 3, 0,
+            
+            4, 5, 6,
+            6, 7, 4,
+            
+            8, 9, 10,
+            10, 11, 8,
+            
+            12, 13, 14,
+            14, 15, 12,
+            
+            16, 17, 18,
+            18, 19, 16,
+            
+            20, 21, 22,
+            22, 23, 20
         ];
         
         // Render pipeline variables
@@ -39,6 +113,9 @@ namespace MinecraftCloneTutorial {
         private int _ibo;
         private int _textureID;
         private int _textureVBO;
+        
+        // Transformation variables
+        private float _yRot = 0.0f;
         
         // Width and Height of the game window
         private int _width, _height;
@@ -84,7 +161,7 @@ namespace MinecraftCloneTutorial {
             // This takes in the Buffer Target (which has been bound to the VBO, the size of the data (in memory,
             // which is why we have to multiply the length of the vertex array by the size of a float), the data itself,
             // and finally we are going to use StaticDraw (I'm not exactly sure what this means yet)
-            GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Length * sizeof(float), _vertices, BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Count * Vector3.SizeInBytes, _vertices.ToArray(), BufferUsageHint.StaticDraw);
             
             // Now we can put the data in the VBO into a slot of the VAO using VertexAttribPointer()
             // The first parameter represents which slot the data is entering. The second parameter is more complicated
@@ -101,7 +178,7 @@ namespace MinecraftCloneTutorial {
             // --- Texture VBO --- //
             _textureVBO = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, _textureVBO);
-            GL.BufferData(BufferTarget.ArrayBuffer, _texCoords.Length * sizeof(float), _texCoords, BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, _texCoords.Count * Vector3.SizeInBytes, _texCoords.ToArray(), BufferUsageHint.StaticDraw);
             
             // Here is the code for the texture VBO, the same as above but for slot 1 instead of 0
             GL.VertexAttribPointer(1, 2, VertexAttribPointerType.Float, false, 0, 0);
@@ -179,6 +256,9 @@ namespace MinecraftCloneTutorial {
             // Unbind the texture
             GL.BindTexture(TextureTarget.Texture2D, 0);
 
+            // Enable depth testing
+            GL.Enable(EnableCap.DepthTest);
+            
         }
 
         protected override void OnUnload() {
@@ -194,7 +274,7 @@ namespace MinecraftCloneTutorial {
 
         protected override void OnRenderFrame(FrameEventArgs args) {
             GL.ClearColor(0.68f, 0.88f, 0.98f, 1.0f);
-            GL.Clear(ClearBufferMask.ColorBufferBit);
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             
             // Draw the triangle
             // First, let GL know that we're using the program
@@ -206,6 +286,29 @@ namespace MinecraftCloneTutorial {
             // Bind the VAO so we can use it
             GL.BindVertexArray(_vao);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, _ibo);
+            
+            // Transformation matrices
+            Matrix4 model = Matrix4.Identity;
+            Matrix4 view = Matrix4.Identity;
+            Matrix4 projection =
+                Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(60.0f), _width / _height, 0.1f,
+                    100.0f);
+
+            _yRot += 0.001f;
+            if (_yRot >= 2.0 * (float)Math.PI) {
+                _yRot -= 2.0f * (float)Math.PI;
+            }
+            model = Matrix4.CreateRotationY(_yRot);
+            model *= Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
+            
+            var modelLocation = GL.GetUniformLocation(_shaderProgram, "model");
+            var viewLocation = GL.GetUniformLocation(_shaderProgram, "view");
+            var projectionLocation = GL.GetUniformLocation(_shaderProgram, "projection");
+            
+            GL.UniformMatrix4(modelLocation, true, ref model);
+            GL.UniformMatrix4(viewLocation, true, ref view);
+            GL.UniformMatrix4(projectionLocation, true, ref projection);
+            
             // Draw the triangle, with 'count' being the number of vertices
             GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
             // GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
@@ -216,6 +319,9 @@ namespace MinecraftCloneTutorial {
 
         protected override void OnUpdateFrame(FrameEventArgs args) {
             base.OnUpdateFrame(args);
+            
+            // Close the program if the escape key is pressed
+            if(KeyboardState.IsKeyDown(Keys.Escape)) { Close(); }
         }
 
         /// <summary>
