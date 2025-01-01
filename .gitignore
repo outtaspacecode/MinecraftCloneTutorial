@@ -288,4 +288,5 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
-MinecraftCloneTutorial/obj/Debug/net8.0/*
+MinecraftCloneTutorial/obj/Debug/net8.0/MinecraftCloneTutorial.AssemblyInfo.cs
+MinecraftCloneTutorial/obj/Debug/net8.0/MinecraftCloneTutorial.AssemblyInfoInputs.cache
