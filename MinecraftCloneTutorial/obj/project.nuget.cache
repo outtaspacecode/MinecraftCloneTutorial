@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "91ZpxuPByOcZsgIbkQeNMaDe8FvavP1T4yvwzz+qwFBSb9ckVx34/pik0lVX5ljtt03JdATHMGkVzGpSg2ubBg==",
+  "dgSpecHash": "ycAnpTX2dXkTauY/ygAvlW9KZPK1y4IJ46t1xKQmE19KY28MDoojZ2+5VwoAqjK/j0hAjRBO3GIGyzlMnN/NiA==",
   "success": true,
   "projectFilePath": "D:\\Documents\\Passion Projects\\Homesteading Game\\MinecraftCloneTutorial\\MinecraftCloneTutorial\\MinecraftCloneTutorial.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\Cole\\.nuget\\packages\\opentk.windowing.common\\4.9.3\\opentk.windowing.common.4.9.3.nupkg.sha512",
     "C:\\Users\\Cole\\.nuget\\packages\\opentk.windowing.desktop\\4.9.3\\opentk.windowing.desktop.4.9.3.nupkg.sha512",
     "C:\\Users\\Cole\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\4.9.3\\opentk.windowing.graphicslibraryframework.4.9.3.nupkg.sha512",
+    "C:\\Users\\Cole\\.nuget\\packages\\stbimagesharp\\2.30.15\\stbimagesharp.2.30.15.nupkg.sha512",
     "C:\\Users\\Cole\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []

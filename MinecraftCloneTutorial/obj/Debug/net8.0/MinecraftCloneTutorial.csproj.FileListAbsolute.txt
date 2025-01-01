@@ -62,3 +62,4 @@ D:\Documents\Passion Projects\Homesteading Game\MinecraftCloneTutorial\Minecraft
 D:\Documents\Passion Projects\Homesteading Game\MinecraftCloneTutorial\MinecraftCloneTutorial\obj\Debug\net8.0\MinecraftCloneTutorial.pdb
 D:\Documents\Passion Projects\Homesteading Game\MinecraftCloneTutorial\MinecraftCloneTutorial\obj\Debug\net8.0\MinecraftCloneTutorial.genruntimeconfig.cache
 D:\Documents\Passion Projects\Homesteading Game\MinecraftCloneTutorial\MinecraftCloneTutorial\obj\Debug\net8.0\ref\MinecraftCloneTutorial.dll
+D:\Documents\Passion Projects\Homesteading Game\MinecraftCloneTutorial\MinecraftCloneTutorial\bin\Debug\net8.0\StbImageSharp.dll
