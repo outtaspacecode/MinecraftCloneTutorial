@@ -123,7 +123,7 @@ namespace MinecraftCloneTutorial {
         }
 
         protected override void OnRenderFrame(FrameEventArgs args) {
-            GL.ClearColor(0.1f, 0.85f, 0.55f, 1.0f);
+            GL.ClearColor(0.68f, 0.88f, 0.98f, 1.0f);
             GL.Clear(ClearBufferMask.ColorBufferBit);
             
             // Draw the triangle
