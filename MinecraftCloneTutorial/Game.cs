@@ -30,6 +30,7 @@ namespace MinecraftCloneTutorial {
         // Constructor takes in a width and height and sets it
         public Game(int width, int height) : base(GameWindowSettings.Default, new NativeWindowSettings() {
             // This is needed to run on MacOs
+            // It doesn't seem to be working though.. continuing work solely on Windows for now
             Flags = ContextFlags.ForwardCompatible
         }) {
 
