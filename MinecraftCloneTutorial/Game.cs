@@ -155,7 +155,7 @@ namespace MinecraftCloneTutorial {
             _ibo = new IBO(_indices);
 
             _shaderProgram = new ShaderProgram("Default.vert", "Default.frag");
-            _texture = new Texture("deepslate_gold_ore.png");
+            _texture = new Texture("stone.png");
 
             // Enable depth testing
             GL.Enable(EnableCap.DepthTest);
@@ -163,6 +163,7 @@ namespace MinecraftCloneTutorial {
             _camera = new Camera(_width, _height, Vector3.Zero);
             CursorState = CursorState.Grabbed;
 
+            WindowState = WindowState.Fullscreen;
         }
 
         protected override void OnUnload() {
@@ -218,8 +219,10 @@ namespace MinecraftCloneTutorial {
             }
 
             // Close the program if the escape key is pressed
-            if (KeyboardState.IsKeyDown(Keys.Escape)) { Close(); }
+            if (KeyboardState.IsKeyPressed(Keys.Escape)) { Close(); }
 
+            // if (KeyboardState.IsKeyPressed(Keys.Enter)) { WindowState = WindowState.Fullscreen; }
+            
             // Release the mouse if the E key has been pressed
             if (KeyboardState.IsKeyPressed(Keys.E)) {
                 _isGrabbed = !_isGrabbed;

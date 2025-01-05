@@ -14,15 +14,16 @@ namespace MinecraftCloneTutorial {
         // Position variables
         public Vector3 position;
         private Vector3 _up = Vector3.UnitY;
-        private Vector3 _front = -Vector3.UnitZ;
+        private Vector3 _headTilt = -Vector3.UnitZ;
         private Vector3 _right = Vector3.UnitX;
+        private Vector3 _forward = Vector3.UnitZ;
         
         // View rotations
         private float _pitch;
         private float _yaw = -90.0f;
 
         private bool _firstMove = true;
-        public Vector2 lastPos;
+        private Vector2 _lastPos;
         
 
         public Camera(float width, float height, Vector3 position) {
@@ -32,7 +33,7 @@ namespace MinecraftCloneTutorial {
         }
 
         public Matrix4 GetViewMatrix() {
-            return Matrix4.LookAt(position, position + _front, _up); }
+            return Matrix4.LookAt(position, position + _headTilt, _up); }
         
         public Matrix4 GetProjectionMatrix() {
             return Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), SCREENWIDTH / SCREENHEIGHT, 0.1f, 100.0f);
@@ -47,20 +48,20 @@ namespace MinecraftCloneTutorial {
                 _pitch = -89.0f;
             }
             
-            _front.X = MathF.Cos(MathHelper.DegreesToRadians(_pitch)) * MathF.Cos(MathHelper.DegreesToRadians(_yaw));
-            _front.Y = MathF.Sin(MathHelper.DegreesToRadians(_pitch));
-            _front.Z = MathF.Cos(MathHelper.DegreesToRadians(_pitch)) * MathF.Sin(MathHelper.DegreesToRadians(_yaw));
+            _headTilt.X = MathF.Cos(MathHelper.DegreesToRadians(_pitch)) * MathF.Cos(MathHelper.DegreesToRadians(_yaw));
+            _headTilt.Y = MathF.Sin(MathHelper.DegreesToRadians(_pitch));
+            _headTilt.Z = MathF.Cos(MathHelper.DegreesToRadians(_pitch)) * MathF.Sin(MathHelper.DegreesToRadians(_yaw));
 
-            _front = Vector3.Normalize(_front);
+            _headTilt = Vector3.Normalize(_headTilt);
 
-            _right = Vector3.Normalize(Vector3.Cross(_front, Vector3.UnitY));
-            // _up = Vector3.Normalize(Vector3.Cross(_right, _front));
+            _right = Vector3.Normalize(Vector3.Cross(_headTilt, Vector3.UnitY));
+            _forward = Vector3.Normalize(Vector3.Cross(Vector3.UnitY, _right));
         }
 
         public void InputController(KeyboardState input, MouseState mouse, FrameEventArgs e) {
 
             if (input.IsKeyDown(Keys.W)) {
-                position += _front * SPEED * (float)e.Time;
+                position += _forward * SPEED * (float)e.Time;
             }
             
             if (input.IsKeyDown(Keys.A)) {
@@ -68,7 +69,7 @@ namespace MinecraftCloneTutorial {
             }
             
             if (input.IsKeyDown(Keys.S)) {
-                position -= _front * SPEED * (float)e.Time;
+                position -= _forward * SPEED * (float)e.Time;
             }
             
             if (input.IsKeyDown(Keys.D)) {
@@ -84,12 +85,12 @@ namespace MinecraftCloneTutorial {
             }
 
             if (_firstMove) {
-                lastPos = new Vector2(mouse.X, mouse.Y);
+                _lastPos = new Vector2(mouse.X, mouse.Y);
                 _firstMove = false;
             } else {
-                var deltaX = mouse.X - lastPos.X;
-                var deltaY = mouse.Y - lastPos.Y;
-                lastPos = new Vector2(mouse.X, mouse.Y);
+                var deltaX = mouse.X - _lastPos.X;
+                var deltaY = mouse.Y - _lastPos.Y;
+                _lastPos = new Vector2(mouse.X, mouse.Y);
 
                 _yaw += deltaX * SENSITIVITY * (float)e.Time;
                 _pitch -= deltaY * SENSITIVITY * (float)e.Time;
