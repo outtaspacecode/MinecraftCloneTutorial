@@ -9,7 +9,7 @@ namespace MinecraftCloneTutorial {
         private float SPEED = 4.2f;
         private float SCREENWIDTH;
         private float SCREENHEIGHT;
-        private float SENSITIVITY = 90.0f;
+        private float SENSITIVITY = 120.0f;
         
         // Position variables
         public Vector3 position;

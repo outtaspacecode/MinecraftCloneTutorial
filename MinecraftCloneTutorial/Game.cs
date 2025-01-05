@@ -116,6 +116,7 @@ namespace MinecraftCloneTutorial {
         
         // Camera
         private Camera _camera;
+        private bool _isGrabbed = true;
         
         // Width and Height of the game window
         private int _width, _height;
@@ -123,7 +124,6 @@ namespace MinecraftCloneTutorial {
         // Constructor takes in a width and height and sets it
         public Game(int width, int height) : base(GameWindowSettings.Default, new NativeWindowSettings() {
             // This is needed to run on macOS
-            // It doesn't seem to be working though. continuing work solely on Windows for now
             Flags = ContextFlags.ForwardCompatible
         }) {
 
@@ -133,6 +133,7 @@ namespace MinecraftCloneTutorial {
             CenterWindow(new Vector2i(width, height));
             // Set the title in the titlebar
             Title = "Minecraft Clone Tutorial";
+            
         }
 
         protected override void OnResize(ResizeEventArgs e) {
@@ -154,7 +155,7 @@ namespace MinecraftCloneTutorial {
             _ibo = new IBO(_indices);
 
             _shaderProgram = new ShaderProgram("Default.vert", "Default.frag");
-            _texture = new Texture("stone.png");
+            _texture = new Texture("deepslate_gold_ore.png");
 
             // Enable depth testing
             GL.Enable(EnableCap.DepthTest);
@@ -210,10 +211,25 @@ namespace MinecraftCloneTutorial {
 
             MouseState mouse = MouseState;
             KeyboardState input = KeyboardState;
-            
-            _camera.Update(input, mouse, args);
+
+            // Only update the camera if the mouse is grabbed
+            if (_isGrabbed) {
+                _camera.Update(input, mouse, args);
+            }
+
             // Close the program if the escape key is pressed
-            if(KeyboardState.IsKeyDown(Keys.Escape)) { Close(); }
+            if (KeyboardState.IsKeyDown(Keys.Escape)) { Close(); }
+
+            // Release the mouse if the E key has been pressed
+            if (KeyboardState.IsKeyPressed(Keys.E)) {
+                _isGrabbed = !_isGrabbed;
+            }
+
+            if (_isGrabbed) {
+                CursorState = CursorState.Grabbed;
+            } else {
+                CursorState = CursorState.Normal;
+            }
         }
     }
 }
