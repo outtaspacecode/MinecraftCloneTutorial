@@ -14,10 +14,6 @@ using MinecraftCloneTutorial.World;
 namespace MinecraftCloneTutorial {
     internal class Game : GameWindow {
         private Chunk _chunk;
-        private Chunk _chunk2;
-        private Chunk _chunk3;
-        private Chunk _chunk4;
-        private Chunk _chunk5;
         private ShaderProgram _shaderProgram;
         
         // Camera
@@ -53,15 +49,15 @@ namespace MinecraftCloneTutorial {
         protected override void OnLoad() {
             base.OnLoad();
 
-            _chunk = new Chunk(new Vector3(0.0f, 0.0f, 0.0f), "dirt.png");
-            _chunk2 = new Chunk(new Vector3(1.0f, 1.0f, 0.0f), "stone.png");
-            _chunk3 = new Chunk(new Vector3(1.0f, 0.0f, 1.0f), "diamond_ore.png");
-            _chunk4 = new Chunk(new Vector3(0.0f, -1.0f, 1.0f), "deepslate_gold_ore.png");
-            _chunk5 = new Chunk(new Vector3(0.0f, 0.0f, -1.0f), "oak_planks.png");
+            _chunk = new Chunk(new Vector3(0.0f, 0.0f, 0.0f), "stone.png");
             _shaderProgram = new ShaderProgram("Default.vert", "Default.frag");
 
             // Enable depth testing
             GL.Enable(EnableCap.DepthTest);
+            
+            GL.FrontFace(FrontFaceDirection.Cw);
+            GL.Enable(EnableCap.CullFace);
+            GL.CullFace(CullFaceMode.Back);
 
             _camera = new Camera(_width, _height, Vector3.Zero);
             CursorState = CursorState.Grabbed;
@@ -96,10 +92,6 @@ namespace MinecraftCloneTutorial {
             GL.UniformMatrix4(projectionLocation, true, ref projection);
             
             _chunk.Render(_shaderProgram);
-            _chunk2.Render(_shaderProgram);
-            _chunk3.Render(_shaderProgram);
-            _chunk4.Render(_shaderProgram);
-            _chunk5.Render(_shaderProgram);
             
             SwapBuffers();
             base.OnRenderFrame(args);

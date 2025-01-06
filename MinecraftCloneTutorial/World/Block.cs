@@ -3,6 +3,7 @@ using OpenTK.Mathematics;
 namespace MinecraftCloneTutorial.World {
     internal class Block {
         public Vector3 Position;
+        public BlockType type;
         private Dictionary<Faces, FaceData> _faces;
 
         private readonly List<Vector2> _uv = [
@@ -12,8 +13,9 @@ namespace MinecraftCloneTutorial.World {
             new Vector2(0.0f, 0.0f)
         ];
 
-        public Block(Vector3 position) {
+        public Block(Vector3 position, BlockType blockType = BlockType.Air) {
             Position = position;
+            type = blockType;
 
             _faces = new Dictionary<Faces, FaceData> {
                 {Faces.Front, new FaceData {

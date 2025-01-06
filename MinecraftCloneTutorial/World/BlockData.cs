@@ -1,6 +1,12 @@
 using OpenTK.Mathematics;
 
 namespace MinecraftCloneTutorial.World {
+
+    public enum BlockType {
+        Dirt,
+        Air
+    }
+
     public enum Faces {
         Front,
         Back,

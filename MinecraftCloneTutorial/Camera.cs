@@ -97,7 +97,7 @@ namespace MinecraftCloneTutorial {
             }
 
             if (input.IsKeyDown(Keys.LeftControl)) {
-                SPEED = 8.0f;
+                SPEED = 18.0f;
             } else {
                 SPEED = 5.0f;
             }
