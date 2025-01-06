@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MinecraftCloneTutorial")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b587013186c350deca767f6e5b08541ba2554014")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfb24c95f0e7e5a2980ac4dc6f8365912976db26")]
 [assembly: System.Reflection.AssemblyProductAttribute("MinecraftCloneTutorial")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MinecraftCloneTutorial")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

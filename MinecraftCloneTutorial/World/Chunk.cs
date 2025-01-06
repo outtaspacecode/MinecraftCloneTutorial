@@ -50,38 +50,48 @@ namespace MinecraftCloneTutorial.World {
 
                     int faceCount = 0;
 
+                    // Left face
                     if (i % Size == 0) {
                         var leftFaceData = block.GetFace(Faces.Left);
                         _chunkVertices.AddRange(leftFaceData.Vertices);
                         _chunkUVs.AddRange(leftFaceData.UV);
                         faceCount++;
                     }
-                    else if (i % Size == Size - 1) {
+                    
+                    // Right face
+                    if (i % Size == Size - 1) {
                         var rightFaceData = block.GetFace(Faces.Right);
                         _chunkVertices.AddRange(rightFaceData.Vertices);
                         _chunkUVs.AddRange(rightFaceData.UV);
                         faceCount++;
                     }
 
+                    // Back face
                     if (i / Size == 0) {
                         var backFaceData = block.GetFace(Faces.Back);
                         _chunkVertices.AddRange(backFaceData.Vertices);
                         _chunkUVs.AddRange(backFaceData.UV);
                         faceCount++;
                     }
-                    else if (i / Size == Size - 1) {
+                    
+                    // Front face
+                    if (i / Size == Size - 1) {
                         var frontFaceData = block.GetFace(Faces.Front);
                         _chunkVertices.AddRange(frontFaceData.Vertices);
                         _chunkUVs.AddRange(frontFaceData.UV);
                         faceCount++;
                     }
 
+                    // Top face
                     if (j % Size == 0) {
                         var topFaceData = block.GetFace(Faces.Top);
                         _chunkVertices.AddRange(topFaceData.Vertices);
                         _chunkUVs.AddRange(topFaceData.UV);
                         faceCount++;
-                    } else if (j % Size == Size - 1) {
+                    }
+                    
+                    // Bottom face
+                    if (j % Size == Size - 1) {
                         var bottomFaceData = block.GetFace(Faces.Bottom);
                         _chunkVertices.AddRange(bottomFaceData.Vertices);
                         _chunkUVs.AddRange(bottomFaceData.UV);
