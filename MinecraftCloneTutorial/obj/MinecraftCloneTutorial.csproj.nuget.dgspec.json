@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\Passion Projects\\Homesteading Game\\MinecraftCloneTutorial\\MinecraftCloneTutorial\\MinecraftCloneTutorial.csproj": {}
+    "/Users/outtaspace/Documents/Passion Projects/Homestead Game/MinecraftCloneTutorial/MinecraftCloneTutorial/MinecraftCloneTutorial.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\Passion Projects\\Homesteading Game\\MinecraftCloneTutorial\\MinecraftCloneTutorial\\MinecraftCloneTutorial.csproj": {
+    "/Users/outtaspace/Documents/Passion Projects/Homestead Game/MinecraftCloneTutorial/MinecraftCloneTutorial/MinecraftCloneTutorial.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\Passion Projects\\Homesteading Game\\MinecraftCloneTutorial\\MinecraftCloneTutorial\\MinecraftCloneTutorial.csproj",
+        "projectUniqueName": "/Users/outtaspace/Documents/Passion Projects/Homestead Game/MinecraftCloneTutorial/MinecraftCloneTutorial/MinecraftCloneTutorial.csproj",
         "projectName": "MinecraftCloneTutorial",
-        "projectPath": "D:\\Documents\\Passion Projects\\Homesteading Game\\MinecraftCloneTutorial\\MinecraftCloneTutorial\\MinecraftCloneTutorial.csproj",
-        "packagesPath": "C:\\Users\\Cole\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\Passion Projects\\Homesteading Game\\MinecraftCloneTutorial\\MinecraftCloneTutorial\\obj\\",
+        "projectPath": "/Users/outtaspace/Documents/Passion Projects/Homestead Game/MinecraftCloneTutorial/MinecraftCloneTutorial/MinecraftCloneTutorial.csproj",
+        "packagesPath": "/Users/outtaspace/.nuget/packages/",
+        "outputPath": "/Users/outtaspace/Documents/Passion Projects/Homestead Game/MinecraftCloneTutorial/MinecraftCloneTutorial/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Cole\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+          "/Users/outtaspace/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -67,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.307/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -42,42 +42,52 @@ namespace MinecraftCloneTutorial.World {
         /// Generates the appropriate block faces given the data
         /// </summary>
         private void GenBlocks() {
-            for (int i = 0; i < 9; i++) {
-                Block block = new Block(new Vector3(i % 3, 0, i / 3));
+            for (int i = 0; i < Size * Size; i++) {
+                for (int j = 0; j < Size; j++) {
+                    Block block = new Block(new Vector3(i % Size - Size / 2, -2 - j, i / Size - Size / 2));
 
-                int faceCount = 0;
+                    int faceCount = 0;
 
-                if (i  % 3 == 0) {
-                    var leftFaceData = block.GetFace(Faces.Left);
-                    _chunkVertices.AddRange(leftFaceData.Vertices);
-                    _chunkUVs.AddRange(leftFaceData.UV);
-                    faceCount++;
-                } else if (i % 3 == 2) {
-                    var rightFaceData = block.GetFace(Faces.Right);
-                    _chunkVertices.AddRange(rightFaceData.Vertices);
-                    _chunkUVs.AddRange(rightFaceData.UV);
-                    faceCount++;
+                    if (i % Size == 0) {
+                        var leftFaceData = block.GetFace(Faces.Left);
+                        _chunkVertices.AddRange(leftFaceData.Vertices);
+                        _chunkUVs.AddRange(leftFaceData.UV);
+                        faceCount++;
+                    }
+                    else if (i % Size == Size - 1) {
+                        var rightFaceData = block.GetFace(Faces.Right);
+                        _chunkVertices.AddRange(rightFaceData.Vertices);
+                        _chunkUVs.AddRange(rightFaceData.UV);
+                        faceCount++;
+                    }
+
+                    if (i / Size == 0) {
+                        var backFaceData = block.GetFace(Faces.Back);
+                        _chunkVertices.AddRange(backFaceData.Vertices);
+                        _chunkUVs.AddRange(backFaceData.UV);
+                        faceCount++;
+                    }
+                    else if (i / Size == Size - 1) {
+                        var frontFaceData = block.GetFace(Faces.Front);
+                        _chunkVertices.AddRange(frontFaceData.Vertices);
+                        _chunkUVs.AddRange(frontFaceData.UV);
+                        faceCount++;
+                    }
+
+                    if (j % Size == 0) {
+                        var topFaceData = block.GetFace(Faces.Top);
+                        _chunkVertices.AddRange(topFaceData.Vertices);
+                        _chunkUVs.AddRange(topFaceData.UV);
+                        faceCount++;
+                    } else if (j % Size == Size - 1) {
+                        var bottomFaceData = block.GetFace(Faces.Bottom);
+                        _chunkVertices.AddRange(bottomFaceData.Vertices);
+                        _chunkUVs.AddRange(bottomFaceData.UV);
+                        faceCount++;
+                    }
+
+                    AddIndices(faceCount);
                 }
-                
-                var frontFaceData = block.GetFace(Faces.Front);
-                _chunkVertices.AddRange(frontFaceData.Vertices);
-                _chunkUVs.AddRange(frontFaceData.UV);
-                
-                var backFaceData = block.GetFace(Faces.Back);
-                _chunkVertices.AddRange(backFaceData.Vertices);
-                _chunkUVs.AddRange(backFaceData.UV);
-                
-                var topFaceData = block.GetFace(Faces.Top);
-                _chunkVertices.AddRange(topFaceData.Vertices);
-                _chunkUVs.AddRange(topFaceData.UV);
-                
-                var bottomFaceData = block.GetFace(Faces.Bottom);
-                _chunkVertices.AddRange(bottomFaceData.Vertices);
-                _chunkUVs.AddRange(bottomFaceData.UV);
-
-                faceCount += 4;
-                
-                AddIndices(faceCount);
             }
         }
 
