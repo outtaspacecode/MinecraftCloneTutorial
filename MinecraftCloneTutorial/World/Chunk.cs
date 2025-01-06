@@ -19,9 +19,11 @@ namespace MinecraftCloneTutorial.World {
         private IBO _chunkIBO;
 
         private Texture _texture;
+        private string _texturePath;
         
-        public Chunk(Vector3 position) {
+        public Chunk(Vector3 position, string texturePath) {
             Position = position;
+            _texturePath = texturePath;
 
             _chunkVertices = new List<Vector3>();
             _chunkUVs = new List<Vector2>();
@@ -44,7 +46,7 @@ namespace MinecraftCloneTutorial.World {
         private void GenBlocks() {
             for (int i = 0; i < Size * Size; i++) {
                 for (int j = 0; j < Size; j++) {
-                    Block block = new Block(new Vector3(i % Size - Size / 2, -2 - j, i / Size - Size / 2));
+                    Block block = new Block(new Vector3(i % Size - Size / 2 + Position.X * Size, -2 - j + Position.Y * Size, i / Size - Size / 2 + Position.Z * Size));
 
                     int faceCount = 0;
 
@@ -121,7 +123,7 @@ namespace MinecraftCloneTutorial.World {
 
             _chunkIBO = new IBO(_chunkIndices);
 
-            _texture = new Texture("dirt.png");
+            _texture = new Texture(_texturePath);
         }
 
         /// <summary>

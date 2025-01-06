@@ -6,7 +6,7 @@ namespace MinecraftCloneTutorial {
     internal class Camera {
         
         // Constants
-        private float SPEED = 4.2f;
+        private float SPEED = 5.0f;
         private float SCREENWIDTH;
         private float SCREENHEIGHT;
         private float SENSITIVITY = 120.0f;
@@ -36,7 +36,7 @@ namespace MinecraftCloneTutorial {
             return Matrix4.LookAt(position, position + _headTilt, _up); }
         
         public Matrix4 GetProjectionMatrix() {
-            return Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), SCREENWIDTH / SCREENHEIGHT, 0.1f, 100.0f);
+            return Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), SCREENWIDTH / SCREENHEIGHT, 0.1f, 500.0f);
         }
 
         private void UpdateVectors() {
@@ -96,6 +96,11 @@ namespace MinecraftCloneTutorial {
                 _pitch -= deltaY * SENSITIVITY * (float)e.Time;
             }
 
+            if (input.IsKeyDown(Keys.LeftControl)) {
+                SPEED = 8.0f;
+            } else {
+                SPEED = 5.0f;
+            }
             UpdateVectors();
         }
 
