@@ -20,6 +20,7 @@ namespace MinecraftCloneTutorial {
         private Camera _camera = null!;
         private bool _isGrabbed = true;
         private bool _isFullscreen = true;
+        private bool _isWireframe = false;
         
         // Width and Height of the game window
         private int _width, _height;
@@ -132,6 +133,15 @@ namespace MinecraftCloneTutorial {
                     _width = 1000;
                     _height = 600;
                     WindowState = WindowState.Normal;
+                }
+            }
+
+            if (KeyboardState.IsKeyPressed(Keys.V)) {
+                _isWireframe = !_isWireframe;
+                if (_isWireframe) {
+                    GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+                } else {
+                    GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
                 }
             }
         }

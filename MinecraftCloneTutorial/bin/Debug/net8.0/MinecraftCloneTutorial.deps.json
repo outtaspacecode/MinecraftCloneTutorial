@@ -9,6 +9,7 @@
       "MinecraftCloneTutorial/1.0.0": {
         "dependencies": {
           "OpenTK": "4.9.3",
+          "SharpFont": "4.0.1",
           "SimplexNoise": "2.0.0",
           "StbImageSharp": "2.30.15"
         },
@@ -160,6 +161,12 @@
           }
         }
       },
+      "SharpFont/4.0.1": {
+        "dependencies": {
+          "SharpFont.Dependencies": "2.5.5"
+        }
+      },
+      "SharpFont.Dependencies/2.5.5": {},
       "SimplexNoise/2.0.0": {
         "runtime": {
           "lib/netcoreapp2.2/SimplexNoise.dll": {
@@ -261,6 +268,20 @@
       "sha512": "sha512-R25vUotlUhf/bKh+SAtrIjbfMihR9XLUhhAmMNkTd9oKFqyFl2SmyNNs2J04CGOI/H3CzFnP1er6ur0h98hDxw==",
       "path": "opentk.windowing.graphicslibraryframework/4.9.3",
       "hashPath": "opentk.windowing.graphicslibraryframework.4.9.3.nupkg.sha512"
+    },
+    "SharpFont/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yoFLcuWMYdBGB4YLq3bvzrctItJIb+EuK7C7PGgBzqsKxx5UXUwTce64kbvuDQWlMf6p4uQwDm5t2rQdZ9EkyA==",
+      "path": "sharpfont/4.0.1",
+      "hashPath": "sharpfont.4.0.1.nupkg.sha512"
+    },
+    "SharpFont.Dependencies/2.5.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QlGhaq7pL90m2PNkP+YRaFR+wQsDULxOo3kFUUm/jaf6Ym++jCR2R78oMtKqzVjjCjm1Skwy3k1jYC0mx7/lXw==",
+      "path": "sharpfont.dependencies/2.5.5",
+      "hashPath": "sharpfont.dependencies.2.5.5.nupkg.sha512"
     },
     "SimplexNoise/2.0.0": {
       "type": "package",

@@ -193,6 +193,18 @@
           }
         }
       },
+      "SharpFont/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "SharpFont.Dependencies": "(, )"
+        },
+        "build": {
+          "build/SharpFont.props": {}
+        }
+      },
+      "SharpFont.Dependencies/2.5.5": {
+        "type": "package"
+      },
       "SimplexNoise/2.0.0": {
         "type": "package",
         "compile": {
@@ -414,6 +426,41 @@
         "opentk.windowing.graphicslibraryframework.nuspec"
       ]
     },
+    "SharpFont/4.0.1": {
+      "sha512": "yoFLcuWMYdBGB4YLq3bvzrctItJIb+EuK7C7PGgBzqsKxx5UXUwTce64kbvuDQWlMf6p4uQwDm5t2rQdZ9EkyA==",
+      "type": "package",
+      "path": "sharpfont/4.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/SharpFont.props",
+        "config/SharpFont.dll.config",
+        "lib/net45/SharpFont.dll",
+        "lib/net45/SharpFont.dll.config",
+        "lib/net45/SharpFont.xml",
+        "sharpfont.4.0.1.nupkg.sha512",
+        "sharpfont.nuspec"
+      ]
+    },
+    "SharpFont.Dependencies/2.5.5": {
+      "sha512": "QlGhaq7pL90m2PNkP+YRaFR+wQsDULxOo3kFUUm/jaf6Ym++jCR2R78oMtKqzVjjCjm1Skwy3k1jYC0mx7/lXw==",
+      "type": "package",
+      "path": "sharpfont.dependencies/2.5.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bin/msvc10/x64/freetype6.dll",
+        "bin/msvc10/x86/freetype6.dll",
+        "bin/msvc11/x64/freetype6.dll",
+        "bin/msvc11/x86/freetype6.dll",
+        "bin/msvc12/x64/freetype6.dll",
+        "bin/msvc12/x86/freetype6.dll",
+        "bin/msvc9/x64/freetype6.dll",
+        "bin/msvc9/x86/freetype6.dll",
+        "sharpfont.dependencies.2.5.5.nupkg.sha512",
+        "sharpfont.dependencies.nuspec"
+      ]
+    },
     "SimplexNoise/2.0.0": {
       "sha512": "v9q0D/5PSUx3T8ZIixjDEGlLYIDhkTbeQOgz/SddoKw16aoz4LFlg7FTu9DD0304p2m9VsHfTmygCgZ2FzIDVw==",
       "type": "package",
@@ -475,29 +522,25 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "OpenTK >= 4.9.3",
+      "SharpFont >= 4.0.1",
       "SimplexNoise >= 2.0.0",
       "StbImageSharp >= 2.30.15"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Cole\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/outtaspace/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\Passion Projects\\Homesteading Game\\MinecraftCloneTutorial\\MinecraftCloneTutorial\\MinecraftCloneTutorial.csproj",
+      "projectUniqueName": "/Users/outtaspace/Documents/Passion Projects/Homestead Game/MinecraftCloneTutorial/MinecraftCloneTutorial/MinecraftCloneTutorial.csproj",
       "projectName": "MinecraftCloneTutorial",
-      "projectPath": "D:\\Documents\\Passion Projects\\Homesteading Game\\MinecraftCloneTutorial\\MinecraftCloneTutorial\\MinecraftCloneTutorial.csproj",
-      "packagesPath": "C:\\Users\\Cole\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\Passion Projects\\Homesteading Game\\MinecraftCloneTutorial\\MinecraftCloneTutorial\\obj\\",
+      "projectPath": "/Users/outtaspace/Documents/Passion Projects/Homestead Game/MinecraftCloneTutorial/MinecraftCloneTutorial/MinecraftCloneTutorial.csproj",
+      "packagesPath": "/Users/outtaspace/.nuget/packages/",
+      "outputPath": "/Users/outtaspace/Documents/Passion Projects/Homestead Game/MinecraftCloneTutorial/MinecraftCloneTutorial/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Cole\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        "/Users/outtaspace/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -525,6 +568,10 @@
             "target": "Package",
             "version": "[4.9.3, )"
           },
+          "SharpFont": {
+            "target": "Package",
+            "version": "[4.0.1, )"
+          },
           "SimplexNoise": {
             "target": "Package",
             "version": "[2.0.0, )"
@@ -550,8 +597,20 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.307/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1602",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "SharpFont 4.0.1 does not provide an inclusive lower bound for dependency SharpFont.Dependencies. An approximate best match of SharpFont.Dependencies 2.5.5 was resolved.",
+      "libraryId": "SharpFont.Dependencies",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }
