@@ -20,7 +20,13 @@ namespace MinecraftCloneTutorial {
         private Camera _camera = null!;
         private bool _isGrabbed = true;
         private bool _isFullscreen = true;
-        private bool _isWireframe = false;
+        private bool _isWireframe;
+        
+        // FPS
+        private double _previousTime = 0.0;
+        private double _currentTime = 0.0;
+        private double _timeDifference;
+        private uint _timeCounter = 0;
         
         // Width and Height of the game window
         private int _width, _height;
@@ -37,7 +43,6 @@ namespace MinecraftCloneTutorial {
             CenterWindow(new Vector2i(width, height));
             // Set the title in the titlebar
             Title = "Minecraft Clone Tutorial";
-            
         }
 
         protected override void OnResize(ResizeEventArgs e) {
@@ -50,7 +55,7 @@ namespace MinecraftCloneTutorial {
         protected override void OnLoad() {
             base.OnLoad();
 
-            _chunk = new Chunk(new Vector3(0.0f, 0.0f, 0.0f), "stone.png");
+            _chunk = new Chunk(new Vector3(0.0f, 0.0f, 0.0f), "dirt.png");
             _shaderProgram = new ShaderProgram("Default.vert", "Default.frag");
 
             // Enable depth testing
@@ -143,6 +148,16 @@ namespace MinecraftCloneTutorial {
                 } else {
                     GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
                 }
+            }
+
+            _currentTime = GLFW.GetTime();
+            _timeDifference = _currentTime - _previousTime;
+            _timeCounter++;
+            if (_timeDifference >= 0.75) {
+                double fps = (1.0 / _timeDifference) * _timeCounter;
+                Title = "Minecraft Clone Tutorial | FPS: " + Math.Round(fps);
+                _previousTime = _currentTime;
+                _timeCounter = 0;
             }
         }
     }
