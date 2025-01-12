@@ -1,5 +1,3 @@
-// using System.Globalization;
-// using OpenTK;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -13,8 +11,8 @@ using MinecraftCloneTutorial.World;
 
 namespace MinecraftCloneTutorial {
     internal class Game : GameWindow {
-        private Chunk _chunk;
-        private ShaderProgram _shaderProgram;
+        private Chunk _chunk = null!;
+        private ShaderProgram _shaderProgram = null!;
         
         // Camera
         private Camera _camera = null!;
@@ -23,10 +21,10 @@ namespace MinecraftCloneTutorial {
         private bool _isWireframe;
         
         // FPS
-        private double _previousTime = 0.0;
-        private double _currentTime = 0.0;
+        private double _previousTime;
+        private double _currentTime;
         private double _timeDifference;
-        private uint _timeCounter = 0;
+        private uint _timeCounter;
         
         // Width and Height of the game window
         private int _width, _height;
@@ -63,7 +61,7 @@ namespace MinecraftCloneTutorial {
             
             GL.FrontFace(FrontFaceDirection.Cw);
             GL.Enable(EnableCap.CullFace);
-            GL.CullFace(CullFaceMode.Back);
+            GL.CullFace(TriangleFace.Back);
 
             _camera = new Camera(_width, _height, Vector3.Zero);
             CursorState = CursorState.Grabbed;
@@ -72,10 +70,6 @@ namespace MinecraftCloneTutorial {
             _width = 1920;
             _height = 1080;
             WindowState = WindowState.Fullscreen;
-        }
-
-        protected override void OnUnload() {
-            base.OnUnload();
         }
 
         protected override void OnRenderFrame(FrameEventArgs args) {
@@ -143,11 +137,7 @@ namespace MinecraftCloneTutorial {
 
             if (KeyboardState.IsKeyPressed(Keys.V)) {
                 _isWireframe = !_isWireframe;
-                if (_isWireframe) {
-                    GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
-                } else {
-                    GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
-                }
+                GL.PolygonMode(TriangleFace.FrontAndBack, _isWireframe ? PolygonMode.Line : PolygonMode.Fill);
             }
 
             _currentTime = GLFW.GetTime();

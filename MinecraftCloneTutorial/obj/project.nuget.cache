@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "HGGvYNX2z9ADg4O95iasiktbCU/1oPBRFsNZ63FmHkG9OoiYaGfan/9CyhrOCmXVRKGFrx//qymGN5E2UWhpsA==",
+  "dgSpecHash": "LKoV9PcdpFmbgML9g5KlXMg6Nitjbu8/tFkaTTacTL5U807n5YA7Sz7uRgC6syjYfbesf+xQ9gnit8i4jAL8iQ==",
   "success": true,
   "projectFilePath": "/Users/outtaspace/Documents/Passion Projects/Homestead Game/MinecraftCloneTutorial/MinecraftCloneTutorial/MinecraftCloneTutorial.csproj",
   "expectedPackageFiles": [
+    "/Users/outtaspace/.nuget/packages/assimp/3.0.0/assimp.3.0.0.nupkg.sha512",
+    "/Users/outtaspace/.nuget/packages/assimp.redist/3.0.0/assimp.redist.3.0.0.nupkg.sha512",
     "/Users/outtaspace/.nuget/packages/opentk/4.9.3/opentk.4.9.3.nupkg.sha512",
     "/Users/outtaspace/.nuget/packages/opentk.audio.openal/4.9.3/opentk.audio.openal.4.9.3.nupkg.sha512",
     "/Users/outtaspace/.nuget/packages/opentk.compute/4.9.3/opentk.compute.4.9.3.nupkg.sha512",

@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "Assimp/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Assimp.redist": "3.0.0"
+        }
+      },
+      "Assimp.redist/3.0.0": {
+        "type": "package"
+      },
       "OpenTK/4.9.3": {
         "type": "package",
         "dependencies": {
@@ -242,6 +251,83 @@
     }
   },
   "libraries": {
+    "Assimp/3.0.0": {
+      "sha512": "tXbNKtiUy4KEkFAfiHYEpokvW8wD3wfcIwVtwjK0lZHYHkZtBEQ81OprseYS9WFrlui+fJg6ma+DG8AtamcWGA==",
+      "type": "package",
+      "path": "assimp/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "assimp.3.0.0.nupkg.sha512",
+        "assimp.nuspec",
+        "build/configurations.autopkg",
+        "build/native/Assimp.targets",
+        "build/native/default-propertiesui.xml",
+        "build/native/docs/Documentation.chm",
+        "build/native/docs/LICENSE.txt",
+        "build/native/include/assimp/Compiler/poppack1.h",
+        "build/native/include/assimp/Compiler/pushpack1.h",
+        "build/native/include/assimp/DefaultLogger.hpp",
+        "build/native/include/assimp/Exporter.hpp",
+        "build/native/include/assimp/IOStream.hpp",
+        "build/native/include/assimp/IOSystem.hpp",
+        "build/native/include/assimp/Importer.hpp",
+        "build/native/include/assimp/LogStream.hpp",
+        "build/native/include/assimp/Logger.hpp",
+        "build/native/include/assimp/NullLogger.hpp",
+        "build/native/include/assimp/ProgressHandler.hpp",
+        "build/native/include/assimp/ai_assert.h",
+        "build/native/include/assimp/anim.h",
+        "build/native/include/assimp/camera.h",
+        "build/native/include/assimp/cexport.h",
+        "build/native/include/assimp/cfileio.h",
+        "build/native/include/assimp/cimport.h",
+        "build/native/include/assimp/color4.h",
+        "build/native/include/assimp/color4.inl",
+        "build/native/include/assimp/config.h",
+        "build/native/include/assimp/defs.h",
+        "build/native/include/assimp/importerdesc.h",
+        "build/native/include/assimp/light.h",
+        "build/native/include/assimp/material.h",
+        "build/native/include/assimp/material.inl",
+        "build/native/include/assimp/matrix3x3.h",
+        "build/native/include/assimp/matrix3x3.inl",
+        "build/native/include/assimp/matrix4x4.h",
+        "build/native/include/assimp/matrix4x4.inl",
+        "build/native/include/assimp/mesh.h",
+        "build/native/include/assimp/postprocess.h",
+        "build/native/include/assimp/quaternion.h",
+        "build/native/include/assimp/quaternion.inl",
+        "build/native/include/assimp/scene.h",
+        "build/native/include/assimp/texture.h",
+        "build/native/include/assimp/types.h",
+        "build/native/include/assimp/vector2.h",
+        "build/native/include/assimp/vector2.inl",
+        "build/native/include/assimp/vector3.h",
+        "build/native/include/assimp/vector3.inl",
+        "build/native/include/assimp/version.h",
+        "build/native/lib/Win32/assimp.lib",
+        "build/native/lib/x64/assimp.lib",
+        "build/publisher-info.txt"
+      ]
+    },
+    "Assimp.redist/3.0.0": {
+      "sha512": "H01/5QCoghNeziFSPBS19XjNkSjsK2Nz1mt2wyD+4w2yF1A9vT8BjARvYF6VJ36Kxa4uEgr86/laQUMi+heyCQ==",
+      "type": "package",
+      "path": "assimp.redist/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "assimp.redist.3.0.0.nupkg.sha512",
+        "assimp.redist.nuspec",
+        "build/configurations.autopkg",
+        "build/native/Assimp.redist.targets",
+        "build/native/bin/Win32/Assimp32.dll",
+        "build/native/bin/x64/Assimp64.dll",
+        "build/native/default-propertiesui.xml",
+        "build/publisher-info.txt"
+      ]
+    },
     "OpenTK/4.9.3": {
       "sha512": "KdqV6GQHvVqd9/NYHImIgByIQtULb9wa32R/f0D8UsGmHoXGCYk3go14jSVSeAGDloW/CTvOWdwNXcIBP1Gqlw==",
       "type": "package",
@@ -521,6 +607,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Assimp >= 3.0.0",
       "OpenTK >= 4.9.3",
       "SharpFont >= 4.0.1",
       "SimplexNoise >= 2.0.0",
@@ -564,6 +651,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Assimp": {
+            "target": "Package",
+            "version": "[3.0.0, )"
+          },
           "OpenTK": {
             "target": "Package",
             "version": "[4.9.3, )"

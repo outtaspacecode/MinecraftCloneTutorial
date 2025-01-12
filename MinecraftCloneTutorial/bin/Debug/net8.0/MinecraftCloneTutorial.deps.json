@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "MinecraftCloneTutorial/1.0.0": {
         "dependencies": {
+          "Assimp": "3.0.0",
           "OpenTK": "4.9.3",
           "SharpFont": "4.0.1",
           "SimplexNoise": "2.0.0",
@@ -17,6 +18,12 @@
           "MinecraftCloneTutorial.dll": {}
         }
       },
+      "Assimp/3.0.0": {
+        "dependencies": {
+          "Assimp.redist": "3.0.0"
+        }
+      },
+      "Assimp.redist/3.0.0": {},
       "OpenTK/4.9.3": {
         "dependencies": {
           "OpenTK.Audio.OpenAL": "4.9.3",
@@ -191,6 +198,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Assimp/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tXbNKtiUy4KEkFAfiHYEpokvW8wD3wfcIwVtwjK0lZHYHkZtBEQ81OprseYS9WFrlui+fJg6ma+DG8AtamcWGA==",
+      "path": "assimp/3.0.0",
+      "hashPath": "assimp.3.0.0.nupkg.sha512"
+    },
+    "Assimp.redist/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-H01/5QCoghNeziFSPBS19XjNkSjsK2Nz1mt2wyD+4w2yF1A9vT8BjARvYF6VJ36Kxa4uEgr86/laQUMi+heyCQ==",
+      "path": "assimp.redist/3.0.0",
+      "hashPath": "assimp.redist.3.0.0.nupkg.sha512"
     },
     "OpenTK/4.9.3": {
       "type": "package",

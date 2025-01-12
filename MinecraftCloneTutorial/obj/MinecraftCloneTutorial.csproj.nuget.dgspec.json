@@ -38,6 +38,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Assimp": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "OpenTK": {
               "target": "Package",
               "version": "[4.9.3, )"
