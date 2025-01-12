@@ -6,9 +6,6 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 using MinecraftCloneTutorial.Graphics;
 using MinecraftCloneTutorial.World;
 
-// using OpenTK.Windowing.GraphicsLibraryFramework;
-// using StbImageSharp;
-
 namespace MinecraftCloneTutorial {
     internal class Game : GameWindow {
         private Chunk _chunk = null!;
