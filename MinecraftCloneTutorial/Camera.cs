@@ -84,17 +84,8 @@ namespace MinecraftCloneTutorial {
                 position.Y -= SPEED * (float)e.Time;
             }
 
-            if (_firstMove) {
-                _lastPos = new Vector2(mouse.X, mouse.Y);
-                _firstMove = false;
-            } else {
-                var deltaX = mouse.X - _lastPos.X;
-                var deltaY = mouse.Y - _lastPos.Y;
-                _lastPos = new Vector2(mouse.X, mouse.Y);
-
-                _yaw += deltaX * SENSITIVITY * (float)e.Time;
-                _pitch -= deltaY * SENSITIVITY * (float)e.Time;
-            }
+            _yaw += mouse.Delta.X * SENSITIVITY * (float)e.Time; 
+            _pitch -= mouse.Delta.Y * SENSITIVITY * (float)e.Time;
 
             if (input.IsKeyDown(Keys.LeftControl)) {
                 SPEED = 18.0f;
